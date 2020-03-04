@@ -1,5 +1,8 @@
 package pizzashop.model;
 
 public enum PaymentType {
-    Cash, Card
+    @SuppressWarnings("squid:S115")
+    Cash,
+    @SuppressWarnings("squid:S115")
+    Card
 }
