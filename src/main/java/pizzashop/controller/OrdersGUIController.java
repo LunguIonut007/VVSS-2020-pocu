@@ -133,13 +133,12 @@ public class OrdersGUIController {
         orderQuantity.setPromptText("Quantity");
 
         //Controller for Add to order Button
-        addToOrder.setOnAction(event -> orderTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MenuDataModel>(){
-        @Override
-        public void changed(ObservableValue<? extends MenuDataModel> observable, MenuDataModel oldValue, MenuDataModel newValue){
-        oldValue.setQuantity(orderQuantity.getValue());
-        orderTable.getSelectionModel().selectedItemProperty().removeListener(this);
+        addToOrder.setOnAction(event -> {
+          MenuDataModel model = (MenuDataModel)orderTable.getSelectionModel().getSelectedItem();
+            if(orderQuantity != null) {
+                model.setQuantity(orderQuantity.getValue());
             }
-        }));
+        });
 
         //Controller for Exit table Button
         newOrder.setOnAction(event -> {

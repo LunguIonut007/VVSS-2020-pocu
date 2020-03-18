@@ -32,14 +32,14 @@ public class MainGUIController  {
     @FXML
     private MenuItem help;
 
-    OrdersGUI table1Orders = new OrdersGUI();
-    OrdersGUI  table2Orders = new OrdersGUI();
-    OrdersGUI  table3Orders = new OrdersGUI();
-    OrdersGUI  table4Orders = new OrdersGUI();
-    OrdersGUI  table5Orders = new OrdersGUI();
-    OrdersGUI  table6Orders = new OrdersGUI();
-    OrdersGUI  table7Orders = new OrdersGUI();
-    OrdersGUI  table8Orders = new OrdersGUI();
+    private OrdersGUI table1Orders = new OrdersGUI();
+    private OrdersGUI  table2Orders = new OrdersGUI();
+    private OrdersGUI  table3Orders = new OrdersGUI();
+    private OrdersGUI  table4Orders = new OrdersGUI();
+    private OrdersGUI  table5Orders = new OrdersGUI();
+    private OrdersGUI  table6Orders = new OrdersGUI();
+    private OrdersGUI  table7Orders = new OrdersGUI();
+    private OrdersGUI  table8Orders = new OrdersGUI();
 
     PizzaService service;
 

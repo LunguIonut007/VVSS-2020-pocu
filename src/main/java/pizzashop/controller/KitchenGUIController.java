@@ -16,9 +16,9 @@ public class KitchenGUIController {
     @FXML
     private ListView kitchenOrdersList;
     @FXML
-    public Button cook;
+    private Button cook;
     @FXML
-    public Button ready;
+    private Button ready;
 
     protected static final ObservableList<String> order = FXCollections.observableArrayList();
     private Object selectedOrder;
@@ -49,20 +49,24 @@ public class KitchenGUIController {
         //Controller for Cook Button
         cook.setOnAction(event -> {
             selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
-            kitchenOrdersList.getItems().remove(selectedOrder);
-            kitchenOrdersList.getItems().add(selectedOrder.toString()
-                     .concat(" Cooking started at: ").toUpperCase()
-                     .concat(now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE)));
+            if(selectedOrder != null) {
+                kitchenOrdersList.getItems().remove(selectedOrder);
+                kitchenOrdersList.getItems().add(selectedOrder.toString()
+                        .concat(" Cooking started at: ").toUpperCase()
+                        .concat(now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE)));
+            }
         });
         //Controller for Ready Button
         ready.setOnAction(event -> {
             selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
-            kitchenOrdersList.getItems().remove(selectedOrder);
-            extractedTableNumberString = selectedOrder.toString().subSequence(5, 6).toString();
-            extractedTableNumberInteger = Integer.parseInt(extractedTableNumberString);
-            logger.info("--------------------------");
-            logger.info("Table " + extractedTableNumberInteger +" ready at: " + now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE));
-            logger.info("--------------------------");
+            if(selectedOrder !=null){
+                kitchenOrdersList.getItems().remove(selectedOrder);
+                extractedTableNumberString = selectedOrder.toString().subSequence(5, 6).toString();
+                extractedTableNumberInteger = Integer.parseInt(extractedTableNumberString);
+                logger.info("--------------------------");
+                logger.info("Table " + extractedTableNumberInteger + " ready at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
+                logger.info("--------------------------");
+            }
         });
     }
 }
