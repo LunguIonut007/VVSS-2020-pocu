@@ -9,7 +9,7 @@
 
 <?import javafx.scene.layout.HBox?>
 
-<VBox alignment="TOP_LEFT" prefHeight="400" prefWidth="300"  style="-fx-background-color: #336699;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pizzashop.controller.MainGUIController">
+<VBox alignment="TOP_LEFT" prefHeight="400" prefWidth="300"  style="-fx-background-color: #336699;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pizzashop.controller.RestaurantGUIController">
 
       <children>
         <MenuBar>

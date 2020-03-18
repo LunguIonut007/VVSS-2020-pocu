@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import pizzashop.gui.OrdersGUI;
 import pizzashop.service.PizzaService;
 
-public class MainGUIController  {
+public class RestaurantGUIController {
     @FXML
     private Button table1;
     @FXML
@@ -43,7 +43,7 @@ public class MainGUIController  {
 
     PizzaService service;
 
-    public MainGUIController() {
+    public RestaurantGUIController() {
         // constructor left empty to ensure FXML injection
     }
 
