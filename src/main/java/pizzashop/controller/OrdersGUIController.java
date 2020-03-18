@@ -68,8 +68,8 @@ public class OrdersGUIController {
     }
 
     public void setService(PizzaService service, int tableNumber){
-        this.service=service;
-        this.tableNumber=tableNumber;
+        this.service = service;
+        this.tableNumber = tableNumber;
         initData();
 
     }
