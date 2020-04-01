@@ -1,9 +1,6 @@
 package pizzashop;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
@@ -18,9 +15,24 @@ class PizzaServiceTestECPTest {
     private PizzaService service;
     @BeforeEach
     void setUp() {
+        System.out.println("Set up...");
         MenuRepository repoMenu=new MenuRepository();
         PaymentRepository payRepo= new PaymentRepository();
         service = new PizzaService(repoMenu, payRepo);
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("Clearning");
+    }
+    @BeforeAll
+    public static void init() {
+        System.out.println("Initializing tests...");
+    }
+
+    @AfterAll
+    public static void post() {
+        System.out.println("Finished test!");
     }
 
     @Test
@@ -41,10 +53,5 @@ class PizzaServiceTestECPTest {
     @Test
     void voidInexistentCashFlow() {
         assertThrows(InvalidSumOfMoneyException.class, () -> service.addPayment(3,PaymentType.Card, -10));
-    }
-
-    @AfterEach
-    void tearDown() {
-
     }
 }

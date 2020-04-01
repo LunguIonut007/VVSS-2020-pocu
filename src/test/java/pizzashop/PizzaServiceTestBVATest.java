@@ -79,5 +79,6 @@ class PizzaServiceTestBVATest {
 
     @AfterEach
     void tearDown() {
+        System.out.println("Test finished...");
     }
 }
