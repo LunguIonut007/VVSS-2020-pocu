@@ -41,6 +41,7 @@ class PizzaServiceTestECPTest {
     }
 
     @Test
+    @DisplayName("Test with non-existant table")
     void voidUpperInexistentTable() {
         assertThrows(TableNotExistentException.class, () -> service.addPayment(30,PaymentType.Card, 10));
     }
