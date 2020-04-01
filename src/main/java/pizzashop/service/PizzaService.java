@@ -5,6 +5,8 @@ import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
+import pizzashop.service.exceptions.InvalidSumOfMoneyException;
+import pizzashop.service.exceptions.TableNotExistentException;
 
 import java.util.List;
 
@@ -24,6 +26,14 @@ public class PizzaService {
 
 
     public void addPayment(int table, PaymentType type, double amount){
+        if(table <= 0 || table >= 9) {
+            throw new TableNotExistentException("No such table with an id: " + table);
+        }
+
+        if(amount < 0) {
+            throw new InvalidSumOfMoneyException("Sum of money must be greated or lesser than 0!");
+        }
+
         Payment payment= new Payment(table, type, amount);
         payRepo.add(payment);
     }

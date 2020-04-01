@@ -1,4 +1,4 @@
-package pizzashop.service;
+package pizzashop;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
+import pizzashop.service.PizzaService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +24,6 @@ class PizzaServiceTestBVATest {
     @Order(0)
     void testBVA_TC1(){
         Exception exception = assertThrows(Exception.class, () -> service.addPayment(0, PaymentType.Cash,50));
-
     }
     @Test
     @Order(1)
