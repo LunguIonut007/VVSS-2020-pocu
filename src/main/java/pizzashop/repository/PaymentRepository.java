@@ -12,17 +12,16 @@ import java.util.StringTokenizer;
 
 public class PaymentRepository {
     private static final Logger logger = Logger.getLogger(PaymentRepository.class);
-    private static String filename = "data/payments.txt";
+    private final File file;
     private List<Payment> paymentList;
 
-    public PaymentRepository(){
+    public PaymentRepository(File file){
         this.paymentList = new ArrayList<>();
+        this.file = file;
         readPayments();
     }
 
     private void readPayments(){
-        ClassLoader classLoader = PaymentRepository.class.getClassLoader();
-        File file = new File(classLoader.getResource(filename).getFile());
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while((line=br.readLine())!=null){
@@ -55,8 +54,6 @@ public class PaymentRepository {
     }
 
     public void writeAll(){
-        ClassLoader classLoader = PaymentRepository.class.getClassLoader();
-        File file = new File(classLoader.getResource(filename).getFile());
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
             for (Payment p : paymentList) {

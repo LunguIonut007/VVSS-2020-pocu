@@ -16,7 +16,7 @@ class PizzaServiceTestBVATest {
     @BeforeEach
     void setUp() {
         MenuRepository repoMenu=new MenuRepository();
-        PaymentRepository payRepo= new PaymentRepository();
+        PaymentRepository payRepo= new PaymentRepository(Constants.getPaymentFile());
         service = new PizzaService(repoMenu, payRepo);
     }
 
