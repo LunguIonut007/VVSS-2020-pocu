@@ -30,6 +30,9 @@ public class PizzaServiceTest {
             directory.mkdir();
         }
         File file = new File(String.format("./test/payment-%d.txt", new Date().getTime()));
+        if(!file.exists()){
+            file.createNewFile();
+        }
 
         PaymentRepository payRepo = new PaymentRepository(file);
         payRepo.add(new Payment(1, PaymentType.Card, 3));
@@ -45,6 +48,27 @@ public class PizzaServiceTest {
 
     @Test
     void testAmoutCard() {
+        assertEquals(service.getTotalAmount(PaymentType.Card), 77);
+    }
+
+    @Test
+    void testAmountTC_02() {
+        File emptyPayFile = new File("./test/empty.txt");
+        if(!emptyPayFile.exists()){
+            assert false;
+        }
+        else{
+            service.setPayRepo(new PaymentRepository(emptyPayFile));
+            assertEquals(service.getTotalAmount(PaymentType.Card), 0);
+        }
+
+
+
+    }
+
+    @Test
+    void testAmoutCardTC_03() {
+
         assertEquals(service.getTotalAmount(PaymentType.Card), 77);
     }
 

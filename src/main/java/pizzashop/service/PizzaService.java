@@ -11,6 +11,9 @@ import pizzashop.service.exceptions.TableNotExistentException;
 import java.util.List;
 
 public class PizzaService {
+    public void setPayRepo(PaymentRepository payRepo) {
+        this.payRepo = payRepo;
+    }
 
     private MenuRepository menuRepo;
     private PaymentRepository payRepo;
