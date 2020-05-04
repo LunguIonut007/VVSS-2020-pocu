@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 public class PaymentRepository {
     private static final Logger logger = Logger.getLogger(PaymentRepository.class);
-    private final File file;
+    private File file;
     private List<Payment> paymentList;
 
     public PaymentRepository(File file){
@@ -20,6 +20,11 @@ public class PaymentRepository {
         this.file = file;
         readPayments();
     }
+    public PaymentRepository(){
+        this.paymentList = new ArrayList<>();
+        //readPayments();
+    }
+
 
     private void readPayments(){
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
