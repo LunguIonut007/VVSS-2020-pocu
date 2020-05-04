@@ -42,9 +42,6 @@ public class PizzaServiceMockTest {
 
         Mockito.when(service.getPayments()).thenReturn(Arrays.asList(p1,p2));
 
-        //Mockito.when(service.getTotalAmount(PaymentType.Card)).thenReturn(12.2);
-
-        // System.out.println(service.getTotalAmount(PaymentType.Cash));
         Assertions.assertEquals(service.getTotalAmount(PaymentType.Card),12.2);
         Assertions.assertEquals(service.getTotalAmount(null),0.0f);
     }
