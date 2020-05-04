@@ -57,19 +57,20 @@ public class PizzaServiceTest {
         if(!emptyPayFile.exists()){
             assert false;
         }
-        else{
+        else {
             service.setPayRepo(new PaymentRepository(emptyPayFile));
             assertEquals(service.getTotalAmount(PaymentType.Card), 0);
         }
-
-
-
     }
 
     @Test
     void testAmoutCardTC_03() {
-
         assertEquals(service.getTotalAmount(PaymentType.Card), 77);
+    }
+
+    @Test
+    void testAmoutCardTC_04() {
+        assertEquals(service.getTotalAmount(null), 0);
     }
 
 }
