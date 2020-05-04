@@ -49,7 +49,8 @@ public class PizzaServiceMockTest {
     @Test(expected = TableNotExistentException.class)
     public void test_addInvalidPayment(){
 
-        Mockito.doThrow(TableNotExistentException.class).when(repo);
+        Payment p1 = new Payment(-4,PaymentType.Cash,15.2);
+        Mockito.doThrow(TableNotExistentException.class).when(repo).add(p1);
 
         service.addPayment(-4,PaymentType.Cash,-23);
 
