@@ -14,14 +14,16 @@ public class PaymentRepository {
     private static final Logger logger = Logger.getLogger(PaymentRepository.class);
     private File file;
     private List<Payment> paymentList;
+    private PaymentValidator validator = null;
 
     public PaymentRepository(File file){
         this.paymentList = new ArrayList<>();
         this.file = file;
         readPayments();
     }
-    public PaymentRepository(){
+    public PaymentRepository(PaymentValidator validator){
         this.paymentList = new ArrayList<>();
+        this.validator = validator;
         //readPayments();
     }
 
@@ -50,8 +52,15 @@ public class PaymentRepository {
     }
 
     public void add(Payment payment){
-        paymentList.add(payment);
+        if(validator != null) {
+            if (validator.validate(payment))
+                paymentList.add(payment);
+        }
+        else{
+            paymentList.add(payment);
+        }
         writeAll();
+
     }
 
     public List<Payment> getAll(){

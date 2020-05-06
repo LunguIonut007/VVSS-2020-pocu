@@ -19,24 +19,26 @@ public class PizzaRepositoryTest {
     @BeforeEach
     public void setUp(){
         //File file = new File(String.format("./test/payment-%d.txt", new Date().getTime()));
-        PaymentRepository repo = new PaymentRepository();
+        validator = mock(PaymentValidator.class);
+        PaymentRepository repo = new PaymentRepository(validator);
         paymentRepository = spy(repo);
-        validator = spy(PaymentValidator.class);
+
 
     }
     @Test
     public void testAdd() {
         doNothing().when(paymentRepository).writeAll();
         Payment p1 = new Payment(1, PaymentType.Cash,234);
+        when(validator.validate(p1)).thenReturn(true);
         paymentRepository.add(p1);
         assert paymentRepository.getAll().get(0).getTableNumber() == p1.getTableNumber();
     }
     @Test
     public void testValidate() {
+        Payment p1 = new Payment(1, PaymentType.Cash, 234);
         doNothing().when(paymentRepository).writeAll();
-        assert validator.validate(new Payment(1, PaymentType.Cash, 234));
+        when(validator.validate(p1)).thenReturn(false);
         paymentRepository.add(new Payment(1, PaymentType.Cash,234));
-        assert !validator.validate(new Payment(-1, PaymentType.Cash, 234));
-        assert paymentRepository.getAll().size() == 1;
+        assert paymentRepository.getAll().size() == 0;
     }
 }
